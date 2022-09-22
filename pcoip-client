@@ -2,14 +2,14 @@
 
 configdir=${XDG_CONFIG_HOME:-/home/$LOGNAME/.config/}
 
-docker run --rm \
-	--name pcoip-client \
-	--privileged \
-	--cap-add=NET_ADMIN \
-	--device /dev/net/tun \
-	-e DISPLAY="$DISPLAY" \
-	-e LOGNAME="$LOGNAME" \
-	-v "${configdir}":"${configdir}" \
-	-v /tmp/.X11-unix:/tmp/.X11-unix \
-	--network host \
-	pcoip-client
+docker run --rm -it -d \
+--name pcoip-client \
+--privileged \
+--cap-add=NET_ADMIN \
+--device /dev/net/tun \
+-e DISPLAY="$DISPLAY" \
+-e LOGNAME="$LOGNAME" \
+-v "${configdir}":"${configdir}" \
+-v /tmp/.X11-unix:/tmp/.X11-unix \
+--network host \
+pcoip-client
